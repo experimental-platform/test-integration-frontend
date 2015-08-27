@@ -15,3 +15,7 @@ test:
     - docker run --name=DUMP-test-integration-frontend test-integration-frontend:latest vagrant ssh -- sudo journalctl
     - docker run --name=DESTROY-test-integration-frontend test-integration-frontend:latest vagrant destroy -f
     # TODO: Collect container as an asset?
+
+notify:
+  webhooks:
+    - url: $WEBHOOK_URL
