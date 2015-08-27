@@ -5,7 +5,13 @@ machine:
 dependencies:
   override:
     - docker build -t test-integration-frontend:latest .
-    - docker run -e "APIKEY=${APIKEY}" --name=test-integration-frontend-init test-integration-frontend:latest /initialize.sh
+    - >
+      docker run
+      -e "APIKEY=${APIKEY}"
+      -e "CIRCLE_PROJECT_REPONAME=${CIRCLE_PROJECT_REPONAME}"
+      -e "CIRCLE_BUILD_NUM=${CIRCLE_BUILD_NUM}"
+      --name=test-integration-frontend-init
+      test-integration-frontend:latest /initialize.sh
     - docker commit test-integration-frontend-init test-integration-frontend:latest
 
 test:
