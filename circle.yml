@@ -5,6 +5,9 @@ machine:
 dependencies:
   override:
     - docker build -t test-integration-frontend:latest .
+
+test:
+  pre:
     - >
       docker run
       -e "APIKEY=${APIKEY}"
@@ -14,8 +17,6 @@ dependencies:
       --name=test-integration-frontend-init
       test-integration-frontend:latest /initialize.sh
     - docker commit test-integration-frontend-init test-integration-frontend:latest
-
-test:
   override:
     - docker run --name=test-integration-frontend test-integration-frontend:latest /run_tests.sh
   post:
