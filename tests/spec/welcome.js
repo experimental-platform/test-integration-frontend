@@ -14,7 +14,7 @@ var password = "test1234";
 
 // Load the page from localhost
 describe("Welcome wizard", function() {
-  this.timeout(4000);
+  this.timeout(40000);
 
   it("should show first welcome page", function() {
     return browser.visit("/").then(function() {
